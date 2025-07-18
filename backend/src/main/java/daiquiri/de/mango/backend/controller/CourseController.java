@@ -49,7 +49,7 @@ public class CourseController {
 
         Course saved = this.courseServices.saveCourse(course);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("El curso se guardo con exito." +course);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
 
 
     }
@@ -60,7 +60,7 @@ public class CourseController {
         Optional<Course> course = this.courseServices.getByCode(code);
 
         if (course.isPresent()){
-            return ResponseEntity.ok("Curso encontrado con exito."  +course);
+            return ResponseEntity.ok(course);
 
 
         }
@@ -78,7 +78,7 @@ public class CourseController {
 
         }
 
-        return ResponseEntity.ok("Todos los cursos registrados:" +todos);
+        return ResponseEntity.ok(todos);
 
 
 
@@ -94,7 +94,7 @@ public class CourseController {
                 errors.put(error.getField(), error.getDefaultMessage());
             }
 
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Errores de validacion:" +errors);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
 
 
         }
@@ -107,7 +107,8 @@ public class CourseController {
             course.setPrerequisites(courseDets.getPrerequisites());
             Course updated = this.courseServices.saveCourse(course);
 
-            return ResponseEntity.ok("Curso actualizado con exito. " +updated);
+            return ResponseEntity.ok(updated);
+
 
 
 

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
@@ -99,6 +99,38 @@ public class StudentController {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El estudiante no fue encontrado.");
+    }
+
+
+    @PutMapping ("/update/{carnet}")
+    public ResponseEntity<?> update ( @PathVariable String carnet,@Validated @RequestBody Student stu, BindingResult result){
+        if (result.hasErrors()){
+            Map <String, String> errors = new HashMap<>();
+
+            for (FieldError error : result.getFieldErrors()){
+                errors.put(error.getField(), error.getDefaultMessage());
+
+
+
+            }
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+
+
+
+
+
+        }
+        try {
+            Student updated = studentService.updateStudent(carnet, stu);
+            return ResponseEntity.ok(updated);
+
+
+        }catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+
+
+        }
     }
 
 

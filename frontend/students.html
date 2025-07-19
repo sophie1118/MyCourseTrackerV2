@@ -1,49 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>My Course Tracker</title>
-    </head>
-    <body>
-        <h2>Registro de Estudiante</h2>
-        <form id="studentForm">
-            <label> Numero de carnet: <input type="text" id="carnet" required /></label><br>
-            <label> Nombre: <input type="text" id="name" required /></label><br>
-            <label>Correo: <input type="email" id="email" required /></label><br>
-            
-            <button type = "submit"> Guardar</button>
-            
-        </form>
+<head>
+  <meta charset="UTF-8" />
+  <title>My Course Tracker - Estudiantes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    <table>
-         <thead>
-        <tr>
-            <th>Carnet</th>
-            <th>Nombre</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody id="studentTableBody">
+<main>
+  <header>
+    <button id="tabAgregar">Agregar Estudiantes</button>
+    <button id="tabOpciones">Más opciones</button>
+  </header>
+
+  <!-- Sección Agregar -->
+  <form id="studentForm">
+    <div class="input-group">
+      <input type="text" id="carnet" name="carnet" required class="input" placeholder=" " />
+      <label for="carnet" class="user-label">Número de carnet</label>
+    </div>
+
+    <div class="input-group">
+      <input type="text" id="name" name="name" required class="input" placeholder=" " />
+      <label for="name" class="user-label">Nombre</label>
+    </div>
+
+    <div class="input-group">
+      <input type="email" id="email" name="email" required class="input" placeholder=" " />
+      <label for="email" class="user-label">Correo</label>
+    </div>
+
+    <button type="submit" id="guardarBtn">Guardar</button>
+  </form>
+
+  <h3>Lista de Estudiantes</h3>
+  <table>
+    <thead>
+      <tr><th>Carnet</th><th>Nombre</th><th>Email</th></tr>
+    </thead>
+    <tbody id="studentTableBody"></tbody>
+  </table>
+
+  <!-- Sección Opciones -->
+  <div id="seccionOpciones" style="display:none; margin-top: 40px;">
+    <h2>Accede al Estudiante utilizando el carnet</h2>
+
+    <label for="buscarCarnet">Buscar por carnet:</label>
+    <input type="text" id="buscarCarnet" class="input" placeholder=" " />
+    <button id="btnBuscar">Buscar</button>
+
+    <div id="panelOpciones" style="display:none; margin-top:20px;">
+      <label>Nombre: <input type="text" id="editName" class="input" /></label><br />
+      <label>Email: <input type="email" id="editEmail" class="input" /></label><br />
+      <button id="btnActualizar">Actualizar</button>
+      <button id="btnEliminar" style="margin-left:10px; background-color:#c1121f;">Eliminar</button>
+      <p id="mensajeOpciones"></p>
+    </div>
+  </div>
+</main>
+
+<script src="js/student.js"></script>
+</body>
+
+<script>document.getElementById("tabOpciones").addEventListener("click", function() {
+  const seccionOpciones = document.getElementById("seccionOpciones");
+  const form = document.getElementById("studentForm");
+  const lista = document.getElementById("studentTableBody").parentElement; // la tabla
   
-        </tbody>
-        </table>
+  if (seccionOpciones.style.display === "none" || seccionOpciones.style.display === "") {
+    seccionOpciones.style.display = "block";
+    form.style.display = "none";
+    lista.style.display = "none";
+  } else {
+    seccionOpciones.style.display = "none";
+    form.style.display = "block";
+    lista.style.display = "table";
+  }
+});
+
+document.getElementById("tabAgregar").addEventListener("click", function() {
+  const seccionOpciones = document.getElementById("seccionOpciones");
+  const form = document.getElementById("studentForm");
+  const lista = document.getElementById("studentTableBody").parentElement; // la tabla
+  
+  seccionOpciones.style.display = "none";
+  form.style.display = "block";
+  lista.style.display = "table";
+});
 
 
-
-
-
-
-        <script src="js/student.js"></script>
-
-
-    </body>
-
-
-
-
-
-
-
-
-
+</script>
 </html>

@@ -1,0 +1,134 @@
+/* Fuente general */
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: #eff7f6;
+  margin: 0;
+  padding: 20px;
+  color: #04080f;
+}
+
+/* Encabezados */
+h2, h3 {
+  color: #04080f;
+  margin-bottom: 10px;
+}
+
+/* Campos de texto */
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-top: 2em;
+  border: solid 1.5px #a1c6ea;
+  border-radius: 1rem;
+  background: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #04080f;
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-label {
+  margin-top: 2em;
+  position: absolute;
+  left: 15px;
+  color: #507dbc;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #eff7f6;
+}
+
+.input:focus,
+.input:valid {
+  outline: none;
+  border: 1.5px solid #507dbc;
+}
+
+.input:focus ~ label,
+.input:valid ~ label {
+  transform: translateY(-50%) scale(0.8);
+  padding: 0 0.3em;
+  color: #04080f;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #507dbc;
+  color: white;
+}
+
+td, th {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #bbd1ea;
+}
+
+tbody tr:hover {
+  background-color: #f1f9ff;
+}
+
+/* Opciones sección */
+#seccionOpciones {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+#panelOpciones input {
+  margin: 5px 0 15px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #a1c6ea;
+  border-radius: 6px;
+}
+
+/* Mensaje de confirmación o error */
+#mensajeOpciones {
+  color: #507dbc;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Botones */
+button {
+  margin-top: 1em;
+  font-size: 15px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #507dbc;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #3e6fb1;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #365c96;
+  transform: translateY(0);
+}

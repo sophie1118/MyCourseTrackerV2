@@ -32,6 +32,10 @@ public class StudentService implements IStudentService {
 
     @Override
     public Student saveStudent(Student student) {
+        if (studentRepository.existsById(student.getCarnet())){
+            throw new RuntimeException("Error: El carnet ya ha sido registrado.");
+        }
+
         return studentRepository.save(student);
     }
 
@@ -63,6 +67,16 @@ public class StudentService implements IStudentService {
             }
         }
 
+        return studentRepository.save(student);
+    }
+
+    public Student updateStudent(String carnet, Student updatedData) {
+        Student student = studentRepository.findById(carnet)
+                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado"));
+
+        student.setName(updatedData.getName());
+        student.setEmail(updatedData.getEmail());
+        // No toques el carnet porque es el ID
         return studentRepository.save(student);
     }
 }

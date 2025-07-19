@@ -30,6 +30,17 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @GetMapping ("/all")
+    public ResponseEntity<?> all (){
+        List<Student> list = this.studentService.getAllStudents();
+        if (list.isEmpty()){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("La lista se encuentra vacia.");
+
+        }
+
+        return ResponseEntity.ok(list);
+    }
+
     @PostMapping ("/register")
     public ResponseEntity<?> registerStudent (@Validated @RequestBody Student student, BindingResult result){
         if (result.hasErrors()){
